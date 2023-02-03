@@ -1,6 +1,6 @@
 package progfun.models
 
-object Instruction {
+class Instruction {
   val AVANCE = "A"
   val GAUCHE = "G"
   val DROITE = "D"
