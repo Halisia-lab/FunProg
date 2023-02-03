@@ -21,12 +21,12 @@ lazy val root = (project in file("."))
       playJson,
       scalatic,
       scalaTest  % Test
-    ),
+    ),libraryDependencies += "com.lihaoyi" %% "upickle" % "0.9.5",
     // Wartremover
     wartremoverWarnings ++= Warts.unsafe,
     wartremoverErrors ++= Warts.unsafe
   )
-  
+
 
 val compilerOptions = Seq(
   // Common settings
