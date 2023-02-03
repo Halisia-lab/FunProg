@@ -1,5 +1,4 @@
 package progfun.models
 
-class Position(val point: Point, val direction: Char) {
+case class Position(coordinate: Coordinate, orientation: Orientation) {}
 
-}

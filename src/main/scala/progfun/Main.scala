@@ -1,4 +1,4 @@
-package fr.esgi.al.funprog
+package progfun
 
 import progfun.models.Limite
 
