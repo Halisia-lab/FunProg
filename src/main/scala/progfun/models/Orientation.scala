@@ -7,21 +7,21 @@ case class Orientation(direction: Char) extends Enumeration {
   val SOUTH = 'S'
   val WEST = 'W'
 
-  /*def turnRight(): Orientation = direction match {
+  def turnRight(): Unit = direction match {
     case NORTH => Orientation('E')
     case EAST  => Orientation('S')
     case SOUTH => Orientation('W')
     case WEST  => Orientation('N')
   }
 
-  def turnLeft(): Orientation = direction match {
+  def turnLeft(): Unit = direction match {
     case NORTH => Orientation('W')
-    case WEST  => Orientation('N')
+    case EAST  => Orientation('N')
     case SOUTH => Orientation('E')
     case WEST  => Orientation('S')
-  }*/
+  }
 
-  def move(): Orientation = Orientation(direction)
+  def moveStraight(): Unit = Orientation(direction)
 }
 
 object Orientation {}
