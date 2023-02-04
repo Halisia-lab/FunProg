@@ -19,10 +19,7 @@ case class Lawnmower(lawn: Lawn, start: Position) {
 
     case Nil => position
     case instruction::rest =>
-//      print(start.coordinate.x)
-//      print(start.coordinate.y)
-//      print(start.orientation.direction)
-      doInstructions(rest, Position(position.move(position.orientation, instruction), position.turn(instruction)))
+      this.doInstructions(rest, Position(position.move(position.orientation, instruction), position.turn(instruction)))
 
   }
 
