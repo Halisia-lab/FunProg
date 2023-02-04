@@ -25,18 +25,13 @@ object FileParser {
     val instructions1 = lines.lines().toList.get(2)
     val instructionsList = instructions1.toList
 
-    println()
-
 
     val start = Position(new Coordinate(x, y), orientation)
     val lawnmower1 = Lawnmower(lawn, start)
-    lawnmower1.doInstructions(instructionsList)
+    println(lawnmower1.doInstructions(instructionsList, start))
 
-    println(lawnmower1.start.coordinate.x)
-    println(lawnmower1.start.coordinate.y)
-    println(lawnmower1.start.orientation.direction)
 
-    println(lawnmower1)
-    println(instructionsList)
+
+
   }
 }
