@@ -1,6 +1,8 @@
 package progfun.parsing
 import progfun.exceptions.InvalidInputDataException
 import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
+import progfun.writer.JSONWriter
+import progfun.writer.JSONWriter.JSONResult
 
 object FileParser {
 
@@ -8,8 +10,8 @@ object FileParser {
 
     lines match {
       case lawnmower :: _ :: others => {
-        val lawns = lawnmowers :+ lawnmower
-        listLawnmowers(others, lawns)
+        val listLawnmower = lawnmowers :+ lawnmower
+        listLawnmowers(others, listLawnmower)
       }
       case Nil => lawnmowers
       case List(_) => lawnmowers
@@ -19,9 +21,9 @@ object FileParser {
   def listInstructions(lines : List[String], instructions: List[String]): List[String] = {
 
     lines match {
-      case _ :: inst :: others => {
-        val insts = instructions :+ inst
-        listInstructions(others, insts)
+      case _ :: instruction :: others => {
+        val listInstruction = instructions :+ instruction
+        listInstructions(others, listInstruction)
       }
       case Nil => instructions
       case List(_) => instructions
@@ -29,48 +31,41 @@ object FileParser {
   }
 
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-  def parseLines(lawn: Lawn, listLawns : List[String], listInstrs : List[String]) : Unit = {
+  def parseLines(lawn: Lawn, listLawns : List[String], listInstr : List[String]) : List[Lawnmower] = {
 
-        (listLawns, listInstrs) match {
+        (listLawns, listInstr) match {
           case (lawnmower :: restLawnmowers, instructions :: restInstructions) => {
             val position : String = lawnmower
             val x = position.charAt(0).asDigit
             val y = position.charAt(2).asDigit
-            val orientation = new Orientation(position.charAt(4))
+            val orientation = new Orientation(position.charAt(4).toString)
             val instructionsList = instructions.toList
-
+            val listString = instructionsList.map(instr => instr.toString)
             val start = Position(new Coordinate(x, y), orientation)
-            val lawnmower1 = Lawnmower(lawn, start, instructionsList, start)
-            println(lawnmower1.doInstructions(instructionsList, start))
-
-            parseLines(lawn, restLawnmowers, restInstructions)
+            val lawnmower1 = Lawnmower(lawn, start, listString, start)
+            lawnmower1.doInstructions(listString, start) +: parseLines(lawn, restLawnmowers, restInstructions)
           }
           case (List(_), Nil) | (Nil, List(_)) => throw InvalidInputDataException("Format du fichier en entrée incorrect")
-          case  (Nil, Nil) => println("End")
+          case  (Nil, Nil) => List()
         }
   }
 
-
-
-
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-  def execute(): Unit = {
+  def execute(): JSONResult = {
     val source = scala.io.Source.fromFile("tmp/input.txt")
     val lines = try source.mkString finally source.close()
-
-    println(lines)
-
     val linesList : List[String] = lines.split("\n").toList
-
     linesList match {
       case limite :: rest  => {
         val lawn = new Lawn(limite.charAt(0).asDigit, limite.charAt(2).asDigit)
         val listLawns : List[String] = listLawnmowers(rest, List())
-        val listInstrs : List[String] = listInstructions(rest, List())
-        parseLines(lawn, listLawns, listInstrs)
-
+        val listInstr : List[String] = listInstructions(rest, List())
+        val listMawers = parseLines(lawn, listLawns, listInstr)
+        JSONWriter.JSONResult(Coordinate(lawn.height, lawn.width), listMawers)
       }
       case _ => throw InvalidInputDataException("Erreur dans le fichier en entrée")
     }
   }
+
+
 }
