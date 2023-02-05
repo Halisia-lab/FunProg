@@ -1,8 +1,6 @@
 package progfun.parsing
-import play.api.libs.json.Json
 import progfun.exceptions.InvalidInputDataException
 import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
-import progfun.writer.JSONWriter
 
 object FileParser {
 
