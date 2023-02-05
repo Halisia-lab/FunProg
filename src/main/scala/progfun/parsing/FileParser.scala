@@ -1,6 +1,8 @@
 package progfun.parsing
+import play.api.libs.json.Json
 import progfun.exceptions.InvalidInputDataException
 import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
+import progfun.writer.JSONWriter
 
 object FileParser {
 
@@ -40,8 +42,9 @@ object FileParser {
             val instructionsList = instructions.toList
 
             val start = Position(new Coordinate(x, y), orientation)
-            val lawnmower1 = Lawnmower(lawn, start)
+            val lawnmower1 = Lawnmower(lawn, start, instructionsList, start)
             println(lawnmower1.doInstructions(instructionsList, start))
+
             parseLines(lawn, restLawnmowers, restInstructions)
           }
           case (List(_), Nil) | (Nil, List(_)) => throw InvalidInputDataException("Format du fichier en entrée incorrect")
@@ -49,8 +52,11 @@ object FileParser {
         }
   }
 
+
+
+
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-  def parse(): Unit = {
+  def execute(): Unit = {
     val source = scala.io.Source.fromFile("tmp/input.txt")
     val lines = try source.mkString finally source.close()
 
@@ -64,6 +70,7 @@ object FileParser {
         val listLawns : List[String] = listLawnmowers(rest, List())
         val listInstrs : List[String] = listInstructions(rest, List())
         parseLines(lawn, listLawns, listInstrs)
+
       }
       case _ => throw InvalidInputDataException("Erreur dans le fichier en entrée")
     }

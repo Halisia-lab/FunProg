@@ -7,7 +7,7 @@ import progfun.writer.JSONWriter
 object Main extends App {
   println("Ici le programme principal")
 
-  FileParser.parse()
+  FileParser.execute()
 
   val coordinate = JSONWriter.JSONCoordinate(1,2)
   val position = JSONWriter.JSONPosition(coordinate, "S")
