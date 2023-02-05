@@ -4,6 +4,8 @@ import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
 import progfun.writer.JSONWriter
 import progfun.writer.JSONWriter.JSONResult
 
+import scala.io.BufferedSource
+
 object FileParser {
 
   def listLawnmowers(lines : List[String], lawnmowers : List[String]) : List[String] = {
@@ -51,8 +53,8 @@ object FileParser {
   }
 
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
-  def execute(): JSONResult = {
-    val source = scala.io.Source.fromFile("tmp/input.txt")
+  def execute(source: BufferedSource): JSONResult = {
+
     val lines = try source.mkString finally source.close()
     val linesList : List[String] = lines.split("\n").toList
     linesList match {
