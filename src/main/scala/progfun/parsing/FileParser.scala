@@ -1,4 +1,5 @@
 package progfun.parsing
+import progfun.exceptions.InvalidInputDataException
 import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
 
 object FileParser {
@@ -27,6 +28,7 @@ object FileParser {
     }
   }
 
+  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   def parseLines(lawn: Lawn, listLawns : List[String], listInstrs : List[String]) : Unit = {
 
         (listLawns, listInstrs) match {
@@ -42,12 +44,12 @@ object FileParser {
             println(lawnmower1.doInstructions(instructionsList, start))
             parseLines(lawn, restLawnmowers, restInstructions)
           }
-          case (List(_), Nil) => println("ok")
-          case (Nil, List(_)) => println("ok")
-          case  (Nil, Nil) => println("ok")
+          case (List(_), Nil) | (Nil, List(_)) => throw InvalidInputDataException("Format du fichier en entrée incorrect")
+          case  (Nil, Nil) => println("End")
         }
   }
 
+  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   def parse(): Unit = {
     val source = scala.io.Source.fromFile("tmp/input.txt")
     val lines = try source.mkString finally source.close()
@@ -63,7 +65,7 @@ object FileParser {
         val listInstrs : List[String] = listInstructions(rest, List())
         parseLines(lawn, listLawns, listInstrs)
       }
-      case _ => println("ok")
+      case _ => throw InvalidInputDataException("Erreur dans le fichier en entrée")
     }
   }
 }
