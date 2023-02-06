@@ -26,6 +26,10 @@ case class Orientation(direction: String) extends Enumeration {
   override def toString: String = {
     s"orientation: ${direction}"
   }
+
+  def equals(obj: Orientation): Boolean = {
+    this.direction == obj.direction
+  }
 }
 
 

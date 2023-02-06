@@ -18,6 +18,16 @@ case class Lawnmower(lawn: Lawn, start: Position, instruction: List[String], end
   override def toString: String = {
     s"tondeuse: ${end.toString}"
   }
+
+   def equals(other: Lawnmower): Boolean = {
+    this.lawn.width == other.lawn.width &&
+      this.lawn.height == other.lawn.height &&
+      this.start.coordinate == other.start.coordinate &&
+      this.start.orientation == other.start.orientation &&
+      this.end.coordinate == other.end.coordinate &&
+      this.end.orientation == other.end.orientation &&
+     this.instruction == other.instruction
+  }
 }
 
 object Lawnmower {

@@ -7,6 +7,11 @@ case class Coordinate(x: Int, y: Int) {
   def isOut(coordinate: Coordinate): Boolean = {
     this.x > coordinate.x || this.y > coordinate.y || this.x < 0 || this.y < 0
   }
+
+
+   def equals(obj: Coordinate): Boolean = {
+    this.x == obj.x && this.y == obj.y
+  }
 }
 
 object Coordinate {
@@ -17,4 +22,5 @@ object Coordinate {
       "y" -> coordinate.y
     )
   }
+
 }

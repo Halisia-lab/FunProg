@@ -64,9 +64,8 @@ object FileParser {
         val lawn = new Lawn(limite.charAt(0).asDigit, limite.charAt(2).asDigit)
         val listLawns : List[String] = listLawnmowers(rest, List())
         val listInstr : List[String] = listInstructions(rest, List())
-        val listMawers = parseLines(lawn, listLawns, listInstr, 1)
-        //val listMawers = parseLines(lawn, listLawns, listInstr)
 
+        val listMawers = parseLines(lawn, listLawns, listInstr, 1)
 
         JSONWriter.JSONResult(Coordinate(lawn.height, lawn.width), listMawers)
       }
