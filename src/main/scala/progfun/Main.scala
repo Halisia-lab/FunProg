@@ -9,23 +9,23 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 object Main extends App {
 
-  val inputObjects = FileParser.execute()
-  val lawnmowers = inputObjects.tondeuses
-
+  // Configuration
   val conf: Config = ConfigFactory.load()
   val input : String = conf.getString("appplication.input-file")
   val source = scala.io.Source.fromFile(input)
-
   val output = FileParser.execute(source)
+
+  // JSON
   val resultJson = Json.prettyPrint(Json.toJson(output))
-
   val output_json : String = conf.getString("appplication.output-json-file")
-  val f = File(output_json)
-  f.createIfNotExists().appendLine().appendLines(resultJson)
+  val JSONFile = File(output_json)
+  JSONFile.createIfNotExists().appendLine().appendLines(resultJson)
 
-
+  // CSV
+  val lawnmowers = output.tondeuses
   val resultCSV = CSVWriter.formatCSV(lawnmowers, 1)
-  val CSVFile = File("src/main/resources/" + now + ".csv")
+  val output_csv : String = conf.getString("appplication.output-csv-file")
+  val CSVFile = File(output_csv)
   val firstCSVLine : String = "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions"
   CSVFile.createIfNotExists().appendLines(firstCSVLine)
   CSVFile.appendLines(resultCSV)
