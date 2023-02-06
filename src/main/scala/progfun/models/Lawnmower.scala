@@ -6,9 +6,14 @@ case class Lawnmower(lawn: Lawn, start: Position, instruction: List[String], end
 
   def doInstructions(instructions: List[String], position: Position): Lawnmower = {
     instructions match {
-    case Nil => Lawnmower(lawn, start, instruction, position)
-    case instruction::rest =>
+    case Nil => {
+      Lawnmower(lawn, start, instruction, position)
+    }
+    case instruction::rest => {
+
+
       doInstructions(rest, Position(position.move(position.orientation, instruction), position.turn(instruction)))
+    }
   }
   }
 

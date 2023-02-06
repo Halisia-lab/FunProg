@@ -2,11 +2,15 @@ package progfun
 import better.files.File
 import play.api.libs.json.Json
 import progfun.parsing.FileParser
+import progfun.writer.CSVWriter
 
 
 import com.typesafe.config.{Config, ConfigFactory}
 
 object Main extends App {
+
+  val inputObjects = FileParser.execute()
+  val lawnmowers = inputObjects.tondeuses
 
   val conf: Config = ConfigFactory.load()
   val input : String = conf.getString("appplication.input-file")
@@ -16,8 +20,14 @@ object Main extends App {
   val resultJson = Json.prettyPrint(Json.toJson(output))
 
   val output_json : String = conf.getString("appplication.output-json-file")
-
   val f = File(output_json)
   f.createIfNotExists().appendLine().appendLines(resultJson)
+
+
+  val resultCSV = CSVWriter.formatCSV(lawnmowers, 1)
+  val CSVFile = File("src/main/resources/" + now + ".csv")
+  val firstCSVLine : String = "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions"
+  CSVFile.createIfNotExists().appendLines(firstCSVLine)
+  CSVFile.appendLines(resultCSV)
 
 }
