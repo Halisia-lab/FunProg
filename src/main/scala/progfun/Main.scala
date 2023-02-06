@@ -19,7 +19,7 @@ object Main extends App {
   val resultJson = Json.prettyPrint(Json.toJson(output))
   val output_json : String = conf.getString("appplication.output-json-file")
   val JSONFile = File(output_json)
-  JSONFile.createIfNotExists().appendLine().appendLines(resultJson)
+  JSONFile.createIfNotExists().appendLines(resultJson)
 
   // CSV
   val lawnmowers = output.tondeuses

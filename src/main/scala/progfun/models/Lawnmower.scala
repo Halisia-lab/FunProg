@@ -10,8 +10,6 @@ case class Lawnmower(lawn: Lawn, start: Position, instruction: List[String], end
       Lawnmower(lawn, start, instruction, position)
     }
     case instruction::rest => {
-
-
       doInstructions(rest, Position(position.move(position.orientation, instruction), position.turn(instruction)))
     }
   }
