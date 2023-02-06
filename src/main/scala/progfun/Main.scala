@@ -3,18 +3,21 @@ import better.files.File
 import play.api.libs.json.Json
 import progfun.parsing.FileParser
 
-import java.text.SimpleDateFormat
-import java.util.Calendar
+
+import com.typesafe.config.{Config, ConfigFactory}
 
 object Main extends App {
 
-  val json = FileParser.execute()
-  val result = Json.prettyPrint(Json.toJson(json))
+  val conf: Config = ConfigFactory.load()
+  val input : String = conf.getString("appplication.input-file")
+  val source = scala.io.Source.fromFile(input)
 
-  val format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-  val now = format.format(Calendar.getInstance().getTime)
+  val output = FileParser.execute(source)
+  val resultJson = Json.prettyPrint(Json.toJson(output))
 
-  val f = File("src/main/resources/" + now + ".json")
-  f.createIfNotExists().appendLines(result)
+  val output_json : String = conf.getString("appplication.output-json-file")
+
+  val f = File(output_json)
+  f.createIfNotExists().appendLine().appendLines(resultJson)
 
 }
