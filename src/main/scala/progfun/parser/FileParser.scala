@@ -1,4 +1,4 @@
-package progfun.parsing
+package progfun.parser
 import progfun.exceptions.InvalidInputDataException
 import progfun.models.{Coordinate, Lawn, Lawnmower, Orientation, Position}
 import progfun.writer.JSONWriter
@@ -65,9 +65,6 @@ object FileParser {
         val listLawns : List[String] = listLawnmowers(rest, List())
         val listInstr : List[String] = listInstructions(rest, List())
         val listMawers = parseLines(lawn, listLawns, listInstr, 1)
-        //val listMawers = parseLines(lawn, listLawns, listInstr)
-
-
         JSONWriter.JSONResult(Coordinate(lawn.height, lawn.width), listMawers)
       }
       case _ => throw InvalidInputDataException("Erreur dans le fichier en entrée")

@@ -1,4 +1,4 @@
-package progfun.parsing
+package progfun.parser
 
 import org.scalatest.funsuite.AnyFunSuite
 

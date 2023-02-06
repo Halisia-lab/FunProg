@@ -3,9 +3,8 @@ package progfun.writer
 import progfun.models.Lawnmower
 
 object CSVWriter {
-  def formatCSV(tondeuses: List[Lawnmower], num: Int) : String = tondeuses match {
+  def formatCSV(lawnmowers: List[Lawnmower], num: Int) : String = lawnmowers match {
     case tondeuse :: reste => {
-
       val startX = tondeuse.start.coordinate.x.toString
       val startY = tondeuse.start.coordinate.y.toString
       val startOrientation = tondeuse.start.orientation.direction
