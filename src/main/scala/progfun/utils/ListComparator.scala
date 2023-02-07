@@ -3,13 +3,18 @@ package progfun.utils
 import progfun.models.Lawnmower
 
 object ListComparator {
-  def areLawnmowerListsEqual(firstList: List[Lawnmower], secondList: List[Lawnmower]): Boolean = {
+  def areLawnmowerListsEqual(
+      firstList: List[Lawnmower],
+      secondList: List[Lawnmower]
+  ): Boolean = {
     (firstList, secondList) match {
       case (thisLawnmower :: thisLawnmowerRest, other :: otherRest) => {
         if (thisLawnmower.equals(other)) {
-          thisLawnmower.equals(other) && areLawnmowerListsEqual(thisLawnmowerRest, otherRest)
-        }
-        else {
+          thisLawnmower.equals(other) && areLawnmowerListsEqual(
+            thisLawnmowerRest,
+            otherRest
+          )
+        } else {
           false
         }
       }

@@ -1,5 +1,3 @@
 package progfun.writer
 
-class WriterSpec {
-
-}
+class WriterSpec {}

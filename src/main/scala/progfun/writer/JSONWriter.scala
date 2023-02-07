@@ -10,15 +10,15 @@ object JSONWriter {
 
     def equals(obj: JSONResult): Boolean = {
       this.limite.x == obj.limite.x &&
-        this.limite.y == obj.limite.y &&
-        ListComparator.areLawnmowerListsEqual(this.tondeuses, obj.tondeuses)
+      this.limite.y == obj.limite.y &&
+      ListComparator.areLawnmowerListsEqual(this.tondeuses, obj.tondeuses)
     }
   }
 
   object JSONResult {
     implicit val writes: Writes[JSONResult] = Json.writes[JSONResult]
     def writes(result: JSONResult) = Json.obj(
-      "limite"  -> result.limite,
+      "limite"    -> result.limite,
       "tondeuses" -> result.tondeuses
     )
   }

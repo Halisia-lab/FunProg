@@ -4,7 +4,7 @@ import org.scalatest.funsuite.AnyFunSuite
 
 class CoordinateSpec extends AnyFunSuite {
 
-  val coordinate : Coordinate = new Coordinate(3,5)
+  val coordinate: Coordinate = new Coordinate(3, 5)
 
   test("The coordinate x should be equal to 3") {
     assert(coordinate.x === 3)
