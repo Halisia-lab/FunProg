@@ -3,37 +3,37 @@
     "x" : 5,
     "y" : 5
   },
-  "lawnmowers" : [ {
+  "tondeuses" : [ {
     "debut" : {
       "point" : {
-        "x" : 3,
-        "y" : 3
+        "x" : 1,
+        "y" : 4
       },
       "direction" : "E"
     },
     "instructions" : [ "A", "A", "D", "A", "A", "D", "A", "D", "D", "A" ],
     "fin" : {
       "point" : {
-        "x" : 5,
-        "y" : 1
+        "x" : 3,
+        "y" : 2
       },
       "direction" : "E"
     }
   }, {
     "debut" : {
       "point" : {
-        "x" : 1,
-        "y" : 2
+        "x" : 4,
+        "y" : 1
       },
-      "direction" : "N"
+      "direction" : "S"
     },
     "instructions" : [ "G", "A", "G", "A", "G", "A", "G", "A", "A" ],
     "fin" : {
       "point" : {
-        "x" : 1,
-        "y" : 3
+        "x" : 4,
+        "y" : 0
       },
-      "direction" : "N"
+      "direction" : "S"
     }
   } ]
 }

@@ -9,9 +9,9 @@ case class Orientation(direction: String) extends Enumeration {
 
   def turnRight(): Orientation = direction match {
     case NORTH => Orientation("E")
-    case EAST => Orientation("S")
+    case EAST  => Orientation("S")
     case SOUTH => Orientation("W")
-    case WEST => Orientation("N")
+    case WEST  => Orientation("N")
   }
 
   def turnLeft(): Orientation = direction match {
@@ -26,8 +26,10 @@ case class Orientation(direction: String) extends Enumeration {
   override def toString: String = {
     s"orientation: ${direction}"
   }
+
+  def equals(obj: Orientation): Boolean = {
+    this.direction == obj.direction
+  }
 }
-
-
 
 object Orientation {}

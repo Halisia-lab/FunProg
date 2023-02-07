@@ -4,10 +4,10 @@ import org.scalatest.funsuite.AnyFunSuite
 
 class OrientationSpec extends AnyFunSuite {
 
-  val north : Orientation = new Orientation("N")
-  val south : Orientation = new Orientation("S")
-  val east : Orientation = new Orientation("E")
-  val west : Orientation = new Orientation("W")
+  val north: Orientation = new Orientation("N")
+  val south: Orientation = new Orientation("S")
+  val east: Orientation = new Orientation("E")
+  val west: Orientation = new Orientation("W")
 
   test("Turn right from north should return east") {
     assert(north.turnRight() === east)

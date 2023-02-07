@@ -9,17 +9,17 @@ case class Position(coordinate: Coordinate, orientation: Orientation) {
       case "A" => orientation.moveStraight()
       case "D" => orientation.turnRight()
       case "G" => orientation.turnLeft()
-      case _ => orientation
+      case _   => orientation
     }
   }
 
-  def move(orientation: Orientation, instruction: String): Coordinate  = {
+  def move(orientation: Orientation, instruction: String): Coordinate = {
     orientation match {
       case Orientation("N") => moveNorth(instruction)
       case Orientation("S") => moveSouth(instruction)
       case Orientation("E") => moveEast(instruction)
       case Orientation("W") => moveWest(instruction)
-      case _ => Coordinate(coordinate.x, coordinate.y)
+      case _                => Coordinate(coordinate.x, coordinate.y)
     }
   }
 
@@ -28,34 +28,34 @@ case class Position(coordinate: Coordinate, orientation: Orientation) {
       case "A" => Coordinate(coordinate.x, coordinate.y + 1)
       case "D" => Coordinate(coordinate.x + 1, coordinate.y)
       case "G" => Coordinate(coordinate.x - 1, coordinate.y)
-      case _ => Coordinate(coordinate.x, coordinate.y)
+      case _   => Coordinate(coordinate.x, coordinate.y)
     }
   }
 
   def moveSouth(instruction: String): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x, coordinate.y-1)
-      case "D" => Coordinate(coordinate.x-1, coordinate.y)
-      case "G" => Coordinate(coordinate.x+1, coordinate.y)
-      case _ => Coordinate(coordinate.x, coordinate.y)
+      case "A" => Coordinate(coordinate.x, coordinate.y - 1)
+      case "D" => Coordinate(coordinate.x - 1, coordinate.y)
+      case "G" => Coordinate(coordinate.x + 1, coordinate.y)
+      case _   => Coordinate(coordinate.x, coordinate.y)
     }
   }
 
   def moveEast(instruction: String): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x+1, coordinate.y)
-      case "D" => Coordinate(coordinate.x, coordinate.y-1)
-      case "G" => Coordinate(coordinate.x, coordinate.y+1)
-      case _ => Coordinate(coordinate.x, coordinate.y)
+      case "A" => Coordinate(coordinate.x + 1, coordinate.y)
+      case "D" => Coordinate(coordinate.x, coordinate.y - 1)
+      case "G" => Coordinate(coordinate.x, coordinate.y + 1)
+      case _   => Coordinate(coordinate.x, coordinate.y)
     }
   }
 
   def moveWest(instruction: String): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x-1, coordinate.y)
-      case "D" => Coordinate(coordinate.x, coordinate.y+1)
-      case "G" => Coordinate(coordinate.x, coordinate.y-1)
-      case _ => Coordinate(coordinate.x, coordinate.y)
+      case "A" => Coordinate(coordinate.x - 1, coordinate.y)
+      case "D" => Coordinate(coordinate.x, coordinate.y + 1)
+      case "G" => Coordinate(coordinate.x, coordinate.y - 1)
+      case _   => Coordinate(coordinate.x, coordinate.y)
     }
   }
 
@@ -66,9 +66,9 @@ case class Position(coordinate: Coordinate, orientation: Orientation) {
 
 object Position {
   @SuppressWarnings(Array("org.wartremover.warts.Any"))
-  implicit val writes: Writes[Position] =  Writes { position =>
+  implicit val writes: Writes[Position] = Writes { position =>
     Json.obj(
-      "point"  -> position.coordinate,
+      "point"     -> position.coordinate,
       "direction" -> position.orientation.direction
     )
   }
