@@ -1,9 +1,9 @@
-package progfun.parsing
+package progfun.parser
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.funsuite.AnyFunSuite
 import progfun.models.{Coordinate, Lawn, Lawnmower}
-import progfun.parsing.FileParser.parseLines
+import progfun.parser.FileParser.parseLines
 import progfun.utils.ListComparator
 import progfun.writer.JSONWriter
 import progfun.writer.JSONWriter.JSONResult
