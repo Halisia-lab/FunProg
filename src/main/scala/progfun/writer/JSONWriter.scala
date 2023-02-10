@@ -10,7 +10,7 @@ object JSONWriter {
   object JSONResult {
     implicit val writes: Writes[JSONResult] = Json.writes[JSONResult]
     def writes(result: JSONResult) = Json.obj(
-      "limite"  -> result.limite,
+      "limite"    -> result.limite,
       "tondeuses" -> result.lawnmowers
     )
   }

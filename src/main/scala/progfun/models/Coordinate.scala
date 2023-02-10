@@ -11,9 +11,9 @@ case class Coordinate(x: Int, y: Int) {
 
 object Coordinate {
   @SuppressWarnings(Array("org.wartremover.warts.Any"))
-    implicit val writes: Writes[Coordinate] = Writes { coordinate =>
+  implicit val writes: Writes[Coordinate] = Writes { coordinate =>
     Json.obj(
-      "x"  -> coordinate.x,
+      "x" -> coordinate.x,
       "y" -> coordinate.y
     )
   }

@@ -3,7 +3,7 @@
     "x" : 5,
     "y" : 5
   },
-  "lawnmowers" : [ {
+  "tondeuses" : [ {
     "debut" : {
       "point" : {
         "x" : 3,
