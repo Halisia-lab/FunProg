@@ -1,2 +1,4 @@
-1;1;4;E;3;2;E;AADAADADDA
-2;4;1;S;4;0;S;GAGAGAGAA
+numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions
+1;3;3;E;5;0;E;AADAADADDA
+2;1;2;N;0;0;W;GAGAGAGAA
+

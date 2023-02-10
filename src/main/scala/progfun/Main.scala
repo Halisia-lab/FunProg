@@ -1,5 +1,5 @@
 package progfun
-import progfun.writer.{Writer}
+import progfun.writer.Writer
 
 object Main extends App {
 

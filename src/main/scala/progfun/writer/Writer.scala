@@ -27,9 +27,9 @@ object Writer {
     val output_csv: String = conf.getString("appplication.output-csv-file")
     val CSVFile = File(output_csv)
     val firstCSVLine: String =
-      "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions"
-    CSVFile.createIfNotExists().appendLines(firstCSVLine)
-    CSVFile.overwrite(resultCSV)
+      "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions\n"
+    CSVFile.createIfNotExists().overwrite(firstCSVLine)
+    CSVFile.appendLines(resultCSV)
 
     println("Programme ran successfully")
   }

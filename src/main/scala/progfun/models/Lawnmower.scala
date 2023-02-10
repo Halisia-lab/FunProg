@@ -21,7 +21,7 @@ case class Lawnmower(
         doInstructions(
           rest,
           Position(
-            position.move(position.orientation, instruction),
+            position.move(position.orientation, instruction, lawn),
             position.turn(instruction)
           )
         )

@@ -13,49 +13,83 @@ case class Position(coordinate: Coordinate, orientation: Orientation) {
     }
   }
 
-  def move(orientation: Orientation, instruction: String): Coordinate = {
+  def move(
+      orientation: Orientation,
+      instruction: String,
+      limit: Lawn
+  ): Coordinate = {
     orientation match {
-      case Orientation("N") => moveNorth(instruction)
-      case Orientation("S") => moveSouth(instruction)
-      case Orientation("E") => moveEast(instruction)
-      case Orientation("W") => moveWest(instruction)
-      case _                => Coordinate(coordinate.x, coordinate.y)
+      case Orientation("N") => moveNorth(instruction, limit)
+      case Orientation("S") => moveSouth(instruction, limit)
+      case Orientation("E") => moveEast(instruction, limit)
+      case Orientation("W") => moveWest(instruction, limit)
+      case _                => coordinate
     }
   }
 
-  def moveNorth(instruction: String): Coordinate = {
+  def moveNorth(instruction: String, limit: Lawn): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x, coordinate.y + 1)
-      case "D" => Coordinate(coordinate.x + 1, coordinate.y)
-      case "G" => Coordinate(coordinate.x - 1, coordinate.y)
-      case _   => Coordinate(coordinate.x, coordinate.y)
+      case "A" =>
+        if (limit.height > coordinate.y)
+          Coordinate(coordinate.x, coordinate.y + 1)
+        else coordinate
+      case "D" =>
+        if (limit.width > coordinate.x)
+          Coordinate(coordinate.x + 1, coordinate.y)
+        else coordinate
+      case "G" =>
+        if (0 < coordinate.x) Coordinate(coordinate.x - 1, coordinate.y)
+        else coordinate
+      case _ => coordinate
     }
   }
 
-  def moveSouth(instruction: String): Coordinate = {
+  def moveSouth(instruction: String, limit: Lawn): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x, coordinate.y - 1)
-      case "D" => Coordinate(coordinate.x - 1, coordinate.y)
-      case "G" => Coordinate(coordinate.x + 1, coordinate.y)
-      case _   => Coordinate(coordinate.x, coordinate.y)
+      case "A" =>
+        if (coordinate.y > 0) Coordinate(coordinate.x, coordinate.y - 1)
+        else coordinate
+      case "D" =>
+        if (coordinate.x > 0) Coordinate(coordinate.x - 1, coordinate.y)
+        else coordinate
+      case "G" =>
+        if (coordinate.x < limit.width)
+          Coordinate(coordinate.x + 1, coordinate.y)
+        else coordinate
+      case _ => coordinate
     }
   }
 
-  def moveEast(instruction: String): Coordinate = {
+  def moveEast(instruction: String, limit: Lawn): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x + 1, coordinate.y)
-      case "D" => Coordinate(coordinate.x, coordinate.y - 1)
-      case "G" => Coordinate(coordinate.x, coordinate.y + 1)
-      case _   => Coordinate(coordinate.x, coordinate.y)
+      case "A" =>
+        if (coordinate.x < limit.width)
+          Coordinate(coordinate.x + 1, coordinate.y)
+        else coordinate
+      case "D" =>
+        if (coordinate.y > 0) Coordinate(coordinate.x, coordinate.y - 1)
+        else coordinate
+      case "G" =>
+        if (coordinate.y < limit.height)
+          Coordinate(coordinate.x, coordinate.y + 1)
+        else coordinate
+      case _ => coordinate
     }
   }
 
-  def moveWest(instruction: String): Coordinate = {
+  def moveWest(instruction: String, limit: Lawn): Coordinate = {
     instruction match {
-      case "A" => Coordinate(coordinate.x - 1, coordinate.y)
-      case "D" => Coordinate(coordinate.x, coordinate.y + 1)
-      case "G" => Coordinate(coordinate.x, coordinate.y - 1)
-      case _   => Coordinate(coordinate.x, coordinate.y)
+      case "A" =>
+        if (coordinate.x > 0) Coordinate(coordinate.x - 1, coordinate.y)
+        else coordinate
+      case "D" =>
+        if (coordinate.y < limit.height)
+          Coordinate(coordinate.x, coordinate.y + 1)
+        else coordinate
+      case "G" =>
+        if (coordinate.y > 0) Coordinate(coordinate.x, coordinate.y - 1)
+        else coordinate
+      case _ => coordinate
     }
   }
 
