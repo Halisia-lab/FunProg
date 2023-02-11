@@ -18,8 +18,7 @@ object FileParser {
         val listLawnmower = lawnmowers :+ lawnmower
         listLawnmowers(others, listLawnmower)
       }
-      case Nil     => lawnmowers
-      case List(_) => lawnmowers
+      case Nil | List(_)    => lawnmowers
     }
   }
 
@@ -33,8 +32,7 @@ object FileParser {
         val listInstruction = instructions :+ instruction
         listInstructions(others, listInstruction)
       }
-      case Nil     => instructions
-      case List(_) => instructions
+      case Nil  |  List(_)  => instructions
     }
   }
 
