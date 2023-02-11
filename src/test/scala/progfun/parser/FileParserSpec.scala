@@ -32,7 +32,15 @@ class FileParserSpec extends AnyFunSuite {
     List("G", "A", "G", "A", "G", "A", "G", "A", "A"),
     Position(Coordinate(1, 3), Orientation("N"))
   )
-  val lawnmowers: List[Lawnmower] = List(lawnmower1, lawnmower2)
+
+  val lawnmower3: Lawnmower = Lawnmower(
+    lawn,
+    Position(Coordinate(1, 4), Orientation("S")),
+    List("A", "A", "D", "A", "G", "A", "A", "D"),
+    Position(Coordinate(0, 0), Orientation("W"))
+  )
+
+  val lawnmowers: List[Lawnmower] = List(lawnmower1, lawnmower2, lawnmower3)
 
   val jsonResult: JSONResult = new JSONResult(limit, lawnmowers)
 

@@ -15,7 +15,7 @@
     "fin" : {
       "point" : {
         "x" : 5,
-        "y" : 0
+        "y" : 1
       },
       "direction" : "E"
     }
@@ -28,6 +28,22 @@
       "direction" : "N"
     },
     "instructions" : [ "G", "A", "G", "A", "G", "A", "G", "A", "A" ],
+    "fin" : {
+      "point" : {
+        "x" : 1,
+        "y" : 3
+      },
+      "direction" : "N"
+    }
+  }, {
+    "debut" : {
+      "point" : {
+        "x" : 1,
+        "y" : 4
+      },
+      "direction" : "S"
+    },
+    "instructions" : [ "A", "A", "D", "A", "G", "A", "A", "D" ],
     "fin" : {
       "point" : {
         "x" : 0,
